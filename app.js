@@ -64,6 +64,26 @@ const state = (() => {
       this.renderOperation()
       display.textContent = 0
     },
+    handleBackspace () {
+      if (secondInput) {
+        secondInput = secondInput.slice(0, -1)
+        this.renderOperation()
+        return
+      }
+
+      if (operation) {
+        operation = ''
+        this.renderOperation()
+        return
+      }
+
+      if (firstInput) {
+        firstInput = firstInput.length !== 1 
+          ? firstInput.slice(0, -1)
+          : '0'
+          this.renderOperation()
+      }
+    },
     logVars() {
       console.log(
         firstInput,
@@ -89,24 +109,37 @@ const getResult = (firstInputStr, secondInputStr, operation) => {
 
 buttons.addEventListener('click', e => {
   const clickedElement = e.target
+  const isClickedElementANumber = clickedElement.dataset.js === 'number'
+  const isClickedElementAOperation = clickedElement.dataset.js === 'operation'
+  const isClickedElementClear = clickedElement.dataset.js === 'clear'
+  const isClickedElementResult = clickedElement.dataset.js === 'result'
+  
 
-  if (clickedElement.dataset.js === 'number') {
-    state.setInputs(clickedElement.textContent)
+
+  if (isClickedElementANumber) {
+    const number = clickedElement.textContent
+    state.setInputs(number)
     state.renderOperation()
   }
 
-  if (clickedElement.dataset.js === 'operation') {
-    state.setOperation(clickedElement.dataset.operation)
+  if (isClickedElementAOperation && state.getFirstInput()) {
+    const operation = clickedElement.dataset.operation
+    state.setOperation(operation)
     state.renderOperation()
   }
 
-  if (clickedElement.dataset.js === 'clear') {
+  if (isClickedElementClear) {
     state.clearOperation()
   }
 
-  if (clickedElement.dataset.js === 'result') {
+  if (isClickedElementResult) {
     state.renderResult()
   }
+
+  if (clickedElement.dataset.js === 'delete') {
+    state.handleBackspace()
+  }
+
   state.logVars()
 
   console.log(clickedElement.textContent)
