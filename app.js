@@ -58,4 +58,30 @@ keyboard.addEventListener('click', e => {
     operator = ''
     display.textContent = 0
   }
+
+  if (e.target.dataset.js === 'delete' && operator && secondInput) {
+    if (secondInput.length > 1) {
+      secondInput = secondInput.slice(0, -1)
+    }
+
+    secondInput = ''
+    display.textContent = `${firstInput} ${operator} ${secondInput}`
+    return
+  }
+  
+  if (e.target.dataset.js === 'delete' && operator) {
+    operator = ''
+    display.textContent = `${firstInput} ${operator} ${secondInput}`
+    return
+  }
+
+  if (e.target.dataset.js === 'delete') {
+    if (firstInput.length > 1) {
+      firstInput = firstInput.slice(0, -1)
+    }
+
+    firstInput = ''
+    display.textContent = 0
+    return
+  }
 })
