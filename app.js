@@ -29,6 +29,9 @@ const renderCalculation = () => {
 keyboard.addEventListener('click', e => {
   const isPressedButtonANumber = e.target.dataset.js === 'number' 
   const isPressedButtonAOperator = e.target.dataset.js === 'operation'
+  const isPressedButtonEquals = e.target.dataset.js === 'result'
+  const isPressedButtonClear = e.target.dataset.js === 'clear'
+  const isPressedButtonDel = e.target.dataset.js === 'delete'
 
   if (isPressedButtonANumber && !operator) {
     firstInput += e.target.textContent
@@ -48,27 +51,26 @@ keyboard.addEventListener('click', e => {
     renderCalculation()
   }
 
-  if (e.target.dataset.js === 'number' && operator) {
+  if (isPressedButtonANumber && operator) {
     secondInput += e.target.textContent
     renderCalculation()
   }
 
-  if (e.target.dataset.js === 'result' && secondInput) {
+  if (isPressedButtonEquals && secondInput) {
     firstInput = getResult(firstInput, operator, secondInput)
-    console.log(firstInput)
     secondInput = ''
     operator = ''
     renderCalculation()
   }
 
-  if (e.target.dataset.js === 'clear') {
+  if (isPressedButtonClear) {
     firstInput = 0
     secondInput = ''
     operator = ''
     display.textContent = firstInput
   }
 
-  if (e.target.dataset.js === 'delete' && operator && secondInput) {
+  if (isPressedButtonDel && operator && secondInput) {
     secondInput = secondInput.length > 1
       ? secondInput.slice(0, -1)
       : ''
@@ -77,13 +79,13 @@ keyboard.addEventListener('click', e => {
     return
   }
 
-  if (e.target.dataset.js === 'delete' && operator) {
+  if (isPressedButtonDel && operator) {
     operator = ''
     renderCalculation()
     return
   }
 
-  if (e.target.dataset.js === 'delete') {
+  if (isPressedButtonDel) {
     firstInput = String(firstInput)
     firstInput = firstInput.length > 1
       ? firstInput.slice(0, -1)
