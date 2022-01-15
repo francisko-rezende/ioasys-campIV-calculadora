@@ -23,8 +23,9 @@ display.textContent = 0
 
 keyboard.addEventListener('click', e => {
 
-  if (e.target.dataset.js === 'number' && !operator) {
+  if (e.target.dataset.js === 'number' && !operator && !firstInput) {
     firstInput += e.target.textContent
+    firstInput = parseInt(firstInput).toFixed(0)
     display.textContent = `${firstInput} ${operator} ${secondInput}`
   }
 
