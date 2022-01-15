@@ -4,6 +4,7 @@ const display = document.querySelector('.display')
 let firstInput = ''
 let operator = ''
 let secondInput = ''
+let result = ''
 
 const getResult = (firstInput, operator, secondInput) => {
   const firstNumber = Number(firstInput)
@@ -27,7 +28,14 @@ keyboard.addEventListener('click', e => {
     display.textContent = `${firstInput} ${operator} ${secondInput}`
   }
 
-  if (e.target.dataset.js === 'operation') {
+  if (e.target.dataset.js === 'operation' && firstInput) {
+    operator = e.target.textContent
+    display.textContent = `${firstInput} ${operator} ${secondInput}`
+  }
+  
+  if (e.target.dataset.js === 'operation' && secondInput) {
+    firstInput = getResult(firstInput, operator, secondInput)
+    secondInput = ''
     operator = e.target.textContent
     display.textContent = `${firstInput} ${operator} ${secondInput}`
   }
