@@ -60,11 +60,10 @@ keyboard.addEventListener('click', e => {
   }
 
   if (e.target.dataset.js === 'delete' && operator && secondInput) {
-    if (secondInput.length > 1) {
-      secondInput = secondInput.slice(0, -1)
-    }
-
-    secondInput = ''
+    secondInput = secondInput.length > 1 
+      ? secondInput.slice(0, -1)
+      : ''
+      
     display.textContent = `${firstInput} ${operator} ${secondInput}`
     return
   }
@@ -76,12 +75,9 @@ keyboard.addEventListener('click', e => {
   }
 
   if (e.target.dataset.js === 'delete') {
-    if (firstInput.length > 1) {
-      firstInput = firstInput.slice(0, -1)
-    }
-
-    firstInput = ''
-    display.textContent = 0
-    return
+    firstInput = firstInput.length > 1 
+      ? firstInput.slice(0, -1)
+      : 0
+    display.textContent = `${firstInput}`
   }
 })
