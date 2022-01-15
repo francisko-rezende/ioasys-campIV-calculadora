@@ -5,7 +5,7 @@ const state = (() => {
   let firstInput =  ''
   let operation = ''
   let secondInput =  ''
-  let result = ''
+  let result = 0
 
   return {
     getFirstInput () {
@@ -18,36 +18,44 @@ const state = (() => {
       return secondInput
     },
     setInputs (input) {
+      if (firstInput === '0') {
+        firstInput = input
+        return
+      }
+
       if (!operation) {
-        firstInput += input
-        this.renderOperation()
+        firstInput +=input
         return
       }
 
       secondInput += input
-      this.renderOperation()
     },
     setOperation (input) {
       if (!operation) {
         operation = input
-        this.renderOperation()
         return
       }
-
-      firstInput = getResult(firstInput, secondInput, operation)
+      this.renderPartialResult(input)
+    },
+    renderResult () {
+      if (firstInput && secondInput) {
+        result = getResult(firstInput, secondInput, operation)
+        this.clearOperation()
+        firstInput = String(result)
+        display.textContent = firstInput
+      }
+    },
+    renderPartialResult(input) {
+      result = getResult(firstInput, secondInput, operation)
+      firstInput = String(result)
       operation = input
       secondInput = ''
-      this.renderOperation()
     },
     renderOperation () {
       const firstInput = this.getFirstInput()
       const operation = this.getOperation()
       const secondInput = this.getSecondInput()
       display.textContent = `${firstInput} ${operation} ${secondInput}`
-    },
-    renderResult () {
-      result = getResult(firstInput, secondInput, operation)
-      display.textContent = result
     },
     clearOperation() {
       firstInput =  ''
@@ -72,7 +80,7 @@ const getResult = (firstInputStr, secondInputStr, operation) => {
 
   return { 
     '%': (firstInput / 100) * secondInput,
-    '/': firstInput / 2,
+    '/': firstInput / secondInput,
     '*': firstInput * secondInput,
     '-': firstInput - secondInput,
     '+': firstInput + secondInput,
@@ -84,10 +92,12 @@ buttons.addEventListener('click', e => {
 
   if (clickedElement.dataset.js === 'number') {
     state.setInputs(clickedElement.textContent)
+    state.renderOperation()
   }
 
   if (clickedElement.dataset.js === 'operation') {
     state.setOperation(clickedElement.dataset.operation)
+    state.renderOperation()
   }
 
   if (clickedElement.dataset.js === 'clear') {
@@ -97,5 +107,7 @@ buttons.addEventListener('click', e => {
   if (clickedElement.dataset.js === 'result') {
     state.renderResult()
   }
-  
+  state.logVars()
+
+  console.log(clickedElement.textContent)
 })
