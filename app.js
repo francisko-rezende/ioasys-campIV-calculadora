@@ -1,5 +1,5 @@
 const keyboard = document.querySelector('.keyboard')
-const display = document.querySelector('.display')
+const display = document.querySelector('.display-nums')
 
 let firstInput = ''
 let operator = ''
@@ -68,7 +68,7 @@ keyboard.addEventListener('click', e => {
     display.textContent = `${firstInput} ${operator} ${secondInput}`
     return
   }
-  
+
   if (e.target.dataset.js === 'delete' && operator) {
     operator = ''
     display.textContent = `${firstInput} ${operator} ${secondInput}`

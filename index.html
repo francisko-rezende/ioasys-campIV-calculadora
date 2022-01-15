@@ -1,21 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
   <title>CampCalc</title>
 </head>
+
 <body>
-  <div class="display"></div>
-  <div class="keyboard">
-    <div class="row"><button data-js="clear" class="dark">C</button><button data-js="operation" data-operation="%" class="dark">%</button><button data-js="delete" class="dark">del</button><button data-js="operation" data-operation="/" class="dark">/</button></div>
-    <div class="row"><button data-js="number" class="light">7</button><button data-js="number" class="light">8</button><button data-js="number" class="light">9</button><button data-js="operation" data-operation="*" class="dark">*</button></div>
-    <div class="row"><button data-js="number" class="light">4</button><button data-js="number" class="light">5</button><button data-js="number" class="light">6</button><button data-js="operation" data-operation="-" class="dark">-</button></div>
-    <div class="row"><button data-js="number" class="light">1</button><button data-js="number" class="light">2</button><button data-js="number" class="light">3</button><button data-js="operation" data-operation="+" class="dark">+</button></div>
-    <div class="row"><button data-js="number" class="light">00</button><button data-js="number" class="light">0</button><button data-js="number" class="light">.</button><button data-js="result" class="dark">=</button></div>
+  <main>
+    <div class="display">
+      <div class="display-nums"></div>
+    </div>
+    <div class="keyboard">
+      <button data-js="clear" class="dark">C</button>
+      <button data-js="operation" data-operation="%" class="dark">%</button>
+      <button data-js="delete" class="dark">del</button>
+      <button data-js="operation"data-operation="/" class="dark">/</button>
+      <button data-js="number" class="light">7</button>
+      <button data-js="number" class="light">8</button>
+      <button data-js="number" class="light">9</button>
+      <button data-js="operation" data-operation="*" class="dark">*</button>
+      <button data-js="number" class="light">4</button>
+      <button data-js="number" class="light">5</button>
+      <button data-js="number" class="light">6</button>
+      <button data-js="operation" data-operation="-" class="dark">-</button>
+      <button data-js="number" class="light">1</button>
+      <button data-js="number" class="light">2</button><button data-js="number" class="light">3</button>
+      <button data-js="operation" data-operation="+" class="dark">+</button>
+      <span></span>
+      <button data-js="number" class="light">00</button>
+      <button data-js="number" class="light">0</button>
+      <!-- <button data-js="number" class="light">.</button> -->
+      <button data-js="result" class="dark">=</button>
+
+  </main>
   </div>
   <script src="app.js"></script>
 </body>
+
 </html>
