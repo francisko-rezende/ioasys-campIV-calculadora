@@ -1,5 +1,5 @@
-const display = document.querySelector('.display')
-const buttons =document.querySelector('.buttons')
+const display = document.querySelector('.display-nums')
+const keyboard =document.querySelector('.keyboard')
 
 const state = (() => {
   let firstInput =  ''
@@ -112,7 +112,7 @@ const getResult = (firstInputStr, secondInputStr, operation) => {
     }[operation]
 }
 
-buttons.addEventListener('click', e => {
+keyboard.addEventListener('click', e => {
   const clickedElement = e.target
   const isClickedElementANumber = clickedElement.dataset.js === 'number'
   const isClickedElementAOperation = clickedElement.dataset.js === 'operation'
