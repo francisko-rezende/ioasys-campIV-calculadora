@@ -16,7 +16,7 @@ const getResult = (firstInput, operator, secondInput) => {
     '/': firstNumber / secondNumber,
     '*': firstNumber * secondNumber,
     '%': (firstNumber / 100) * secondNumber
-  }[operator]
+  }[operator] || 'Erro'
 }
 
 display.textContent = 0
@@ -45,7 +45,7 @@ keyboard.addEventListener('click', e => {
     display.textContent = `${firstInput} ${operator} ${secondInput}`
   }
 
-  if (e.target.dataset.js === 'result') {
+  if (e.target.dataset.js === 'result' && secondInput) {
     firstInput = getResult(firstInput, operator, secondInput)
     secondInput = ''
     operator = ''
