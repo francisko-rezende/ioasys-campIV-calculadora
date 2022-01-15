@@ -21,62 +21,71 @@ const getResult = (firstInput, operator, secondInput) => {
 
 display.textContent = 0
 
-keyboard.addEventListener('click', e => {
+const renderCalculation = () => {
+  display.textContent = `${firstInput} ${operator} ${secondInput}`
+}
 
-  if (e.target.dataset.js === 'number' && !operator && !firstInput) {
+
+keyboard.addEventListener('click', e => {
+  const isPressedButtonANumber = e.target.dataset.js === 'number' 
+  const isPressedButtonAOperator = e.target.dataset.js === 'operation'
+
+  if (isPressedButtonANumber && !operator) {
     firstInput += e.target.textContent
     firstInput = parseInt(firstInput).toFixed(0)
-    display.textContent = `${firstInput} ${operator} ${secondInput}`
+    renderCalculation()
   }
 
-  if (e.target.dataset.js === 'operation' && firstInput) {
+  if (isPressedButtonAOperator && firstInput) {
     operator = e.target.textContent
-    display.textContent = `${firstInput} ${operator} ${secondInput}`
+    renderCalculation()
   }
   
-  if (e.target.dataset.js === 'operation' && secondInput) {
+  if (isPressedButtonAOperator && secondInput) {
     firstInput = getResult(firstInput, operator, secondInput)
     secondInput = ''
     operator = e.target.textContent
-    display.textContent = `${firstInput} ${operator} ${secondInput}`
+    renderCalculation()
   }
 
   if (e.target.dataset.js === 'number' && operator) {
     secondInput += e.target.textContent
-    display.textContent = `${firstInput} ${operator} ${secondInput}`
+    renderCalculation()
   }
 
   if (e.target.dataset.js === 'result' && secondInput) {
     firstInput = getResult(firstInput, operator, secondInput)
+    console.log(firstInput)
     secondInput = ''
     operator = ''
-    display.textContent = `${firstInput} ${operator} ${secondInput}`
+    renderCalculation()
   }
 
   if (e.target.dataset.js === 'clear') {
-    firstInput = ''
+    firstInput = 0
     secondInput = ''
     operator = ''
-    display.textContent = 0
+    display.textContent = firstInput
   }
 
   if (e.target.dataset.js === 'delete' && operator && secondInput) {
-    secondInput = secondInput.length > 1 
+    secondInput = secondInput.length > 1
       ? secondInput.slice(0, -1)
       : ''
       
-    display.textContent = `${firstInput} ${operator} ${secondInput}`
+    renderCalculation()
     return
   }
 
   if (e.target.dataset.js === 'delete' && operator) {
     operator = ''
-    display.textContent = `${firstInput} ${operator} ${secondInput}`
+    renderCalculation()
     return
   }
 
   if (e.target.dataset.js === 'delete') {
-    firstInput = firstInput.length > 1 
+    firstInput = String(firstInput)
+    firstInput = firstInput.length > 1
       ? firstInput.slice(0, -1)
       : 0
     display.textContent = `${firstInput}`
