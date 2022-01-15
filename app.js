@@ -46,10 +46,15 @@ const state = (() => {
       }
     },
     renderPartialResult(input) {
-      result = getResult(firstInput, secondInput, operation)
-      firstInput = String(result)
+      if (firstInput && secondInput) {
+        result = getResult(firstInput, secondInput, operation)
+        firstInput = String(result)
+        operation = input
+        secondInput = ''
+        return
+      }
       operation = input
-      secondInput = ''
+      this.renderOperation()
     },
     renderOperation () {
       const firstInput = this.getFirstInput()
