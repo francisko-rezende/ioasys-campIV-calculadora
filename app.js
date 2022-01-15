@@ -16,7 +16,7 @@ const getResult = (firstInput, operator, secondInput) => {
     '/': firstNumber / secondNumber,
     '*': firstNumber * secondNumber,
     '%': (firstNumber / 100) * secondNumber
-  }[operator] || 'Erro'
+  }[operator] ?? 'Erro'
 }
 
 display.textContent = 0
