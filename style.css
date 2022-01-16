@@ -1,25 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
 
 :root {
   --body-color: hsl(0deg 0% 17%);
   --bg-color: hsl(0deg 0% 91%);
   --display-color: hsl(0deg 0% 23%);
   --display-font-color: hsl(151deg 58% 87%);
-  --key-bg-color: 0deg 0% 40%; 
+  --key-bg-color: 0deg 0% 40%;
   --key-num-color: hsl(0deg 0% 83%);
   --key-operation-color: hsl(47deg 100% 68%);
   --shadow-color: 0deg 0% 57%;
-  --shadow-elevation-low:
-    0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
+  --shadow-elevation-low: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
     0.4px 0.8px 1px -1.2px hsl(var(--shadow-color) / 0.34),
     1px 2px 2.5px -2.5px hsl(var(--shadow-color) / 0.34);
-  --shadow-elevation-medium:
-    0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.36),
+  --shadow-elevation-medium: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.36),
     0.8px 1.6px 2px -0.8px hsl(var(--shadow-color) / 0.36),
     2.1px 4.1px 5.2px -1.7px hsl(var(--shadow-color) / 0.36),
     5px 10px 12.6px -2.5px hsl(var(--shadow-color) / 0.36);
-  --shadow-elevation-high:
-    0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
+  --shadow-elevation-high: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
     1.5px 2.9px 3.7px -0.4px hsl(var(--shadow-color) / 0.34),
     2.7px 5.4px 6.8px -0.7px hsl(var(--shadow-color) / 0.34),
     4.5px 8.9px 11.2px -1.1px hsl(var(--shadow-color) / 0.34),
@@ -30,7 +27,7 @@
 }
 
 * {
-  font-family: 'Source Code Pro', monospace;
+  font-family: "Source Code Pro", monospace;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -52,7 +49,6 @@ main {
   box-shadow: var(--shadow-elevation-high);
   background-color: var(--body-color);
 }
-
 
 .display {
   width: 320px;
@@ -104,9 +100,9 @@ button:hover {
 span {
   background-color: var(--body-color);
 }
-button[data-js="operation"],button[data-js="clear"], button[data-js="delete"], button[data-js="result"]  {
-  color: var(--key-operation-color)
+button[data-js="operation"],
+button[data-js="clear"],
+button[data-js="delete"],
+button[data-js="result"] {
+  color: var(--key-operation-color);
 }
-
-
-
