@@ -101,8 +101,8 @@ const getResult = (firstInputStr, secondInputStr, operation) => {
 
   return { 
     '%': (firstInput / 100) * secondInput,
-    '/': firstInput / secondInput,
-    '*': firstInput * secondInput,
+    '÷': firstInput / secondInput,
+    '×': firstInput * secondInput,
     '-': firstInput - secondInput,
     '+': firstInput + secondInput,
     }[operation]
