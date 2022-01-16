@@ -30,12 +30,12 @@ const state = (() => {
 
       secondInput += input
     },
-    setOperation (input) {
+    handleOperation (input) {
       if (!operation) {
         operation = input
         return
       }
-      this.renderPartialResult(input)
+      this.handlePartialResult(input)
     },
     renderResult () {
       if (firstInput && secondInput) {
@@ -45,16 +45,15 @@ const state = (() => {
         display.textContent = firstInput
       }
     },
-    renderPartialResult(input) {
+    handlePartialResult(input) {
       if (firstInput && secondInput) {
         result = getResult(firstInput, secondInput, operation)
+        this.clearOperation()
         firstInput = String(result)
         operation = input
-        secondInput = ''
         return
       }
       operation = input
-      this.renderOperation()
     },
     renderOperation () {
       const firstInput = this.getFirstInput()
@@ -129,7 +128,7 @@ keyboard.addEventListener('click', e => {
 
   if (isClickedElementAOperation && state.getFirstInput()) {
     const operation = clickedElement.dataset.operation
-    state.setOperation(operation)
+    state.handleOperation(operation)
     state.renderOperation()
   }
 
