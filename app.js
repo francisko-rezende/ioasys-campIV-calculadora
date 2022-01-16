@@ -52,7 +52,7 @@ const state = (() => {
       }
       operation = input
     },
-    renderOperation () {
+    updatedDisplayedInfo () {
       const firstInput = this.getFirstInput()
       const operation = this.getOperation()
       const secondInput = this.getSecondInput()
@@ -62,19 +62,19 @@ const state = (() => {
       firstInput =  ''
       operation = ''
       secondInput =  ''
-      this.renderOperation()
+      this.updatedDisplayedInfo()
       display.textContent = 0
     },
     handleBackspace () {
       if (secondInput) {
         secondInput = secondInput.slice(0, -1)
-        this.renderOperation()
+        this.updatedDisplayedInfo()
         return
       }
 
       if (operation) {
         operation = ''
-        this.renderOperation()
+        this.updatedDisplayedInfo()
         return
       }
 
@@ -82,7 +82,7 @@ const state = (() => {
         firstInput = firstInput.length !== 1 
           ? firstInput.slice(0, -1)
           : '0'
-          this.renderOperation()
+          this.updatedDisplayedInfo()
       }
     },
     logVars() {
@@ -120,13 +120,13 @@ keyboard.addEventListener('click', e => {
   if (isClickedElementANumber) {
     const number = clickedElement.textContent
     state.setInputs(number)
-    state.renderOperation()
+    state.updatedDisplayedInfo()
   }
 
   if (isClickedElementAOperation && state.getFirstInput()) {
     const operation = clickedElement.dataset.operation
     state.handleOperation(operation)
-    state.renderOperation()
+    state.updatedDisplayedInfo()
   }
 
   if (isClickedElementClear) {
@@ -135,7 +135,7 @@ keyboard.addEventListener('click', e => {
 
   if (isClickedElementResult) {
     state.handleResult()
-    state.renderOperation()
+    state.updatedDisplayedInfo()
   }
 
   if (clickedElement.dataset.js === 'delete') {
