@@ -84,13 +84,6 @@ const state = (() => {
           : '0'
           this.updatedDisplayedInfo()
       }
-    },
-    logVars() {
-      console.log(
-        firstInput,
-        operation,
-        secondInput,
-        result)
     }
   }
 })()
@@ -141,8 +134,6 @@ keyboard.addEventListener('click', e => {
   if (clickedElement.dataset.js === 'delete') {
     state.handleBackspace()
   }
-
-  state.logVars()
 
   console.log(clickedElement.textContent)
 })
