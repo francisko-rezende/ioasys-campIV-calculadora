@@ -37,19 +37,16 @@ const state = (() => {
       }
       this.handlePartialResult(input)
     },
-    renderResult () {
+    handleResult () {
       if (firstInput && secondInput) {
         result = getResult(firstInput, secondInput, operation)
         this.clearOperation()
         firstInput = String(result)
-        display.textContent = firstInput
       }
     },
     handlePartialResult(input) {
       if (firstInput && secondInput) {
-        result = getResult(firstInput, secondInput, operation)
-        this.clearOperation()
-        firstInput = String(result)
+        this.handleResult()
         operation = input
         return
       }
@@ -137,7 +134,8 @@ keyboard.addEventListener('click', e => {
   }
 
   if (isClickedElementResult) {
-    state.renderResult()
+    state.handleResult()
+    state.renderOperation()
   }
 
   if (clickedElement.dataset.js === 'delete') {
