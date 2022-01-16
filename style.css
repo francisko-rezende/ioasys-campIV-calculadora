@@ -5,7 +5,7 @@
   --bg-color: hsl(0deg 0% 91%);
   --display-color: hsl(0deg 0% 23%);
   --display-font-color: hsl(151deg 58% 87%);
-  --key-bg-color: hsl(0deg 0% 40%); 
+  --key-bg-color: 0deg 0% 40%; 
   --key-num-color: hsl(0deg 0% 83%);
   --key-operation-color: hsl(47deg 100% 68%);
   --shadow-color: 0deg 0% 57%;
@@ -86,7 +86,7 @@ button {
   height: 60px;
   border: none;
   border-radius: 20px;
-  background-color: var(--key-bg-color);
+  background-color: hsl(var(--key-bg-color));
   color: var(--key-num-color);
   box-shadow: var(--shadow-elevation-low);
   cursor: pointer;
@@ -95,6 +95,10 @@ button {
 
 button:active {
   background-color: var(--body-color);
+}
+
+button:hover {
+  background-color: hsl(var(--key-bg-color) / 0.5);
 }
 
 span {
